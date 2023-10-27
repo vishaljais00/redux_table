@@ -1,57 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './customTable.scss';
+import { fetchData } from '../slices/myApiSlice';
 
-const CustomTable = ({ data, itemsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setItems(data.slice(startIndex, endIndex));
-  }, [data, currentPage, itemsPerPage]);
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
+const CustomTable = ({ data, pagination, dispatch}) => {
 
   return (
-    <div className='m-2'>
+    <div className=''>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
             <th>Title</th>
             <th>API Model</th>
             <th>API</th>
+            <th>ART DISPLAY</th>
+            <th>ARTIST</th>
           </tr>
         </thead>
         <tbody>
-          {items.map((item, index) => (
+          {data.map((item, index) => (
             <tr key={index}>
               <td>{item.title}</td>
               <td>{item.api_model}</td>
               <td>{item.api_link}</td>
+              <td>{item.artist_display}</td>
+              <td>{item.artist_title}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="d-flex justify-content-center mt-4">
+      <div className="d-flex justify-content-end mt-4">
         <button
           className="btn btn-primary mr-2"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          onClick={() => dispatch(fetchData(pagination.prev_url))}
+          disabled={pagination.current_page === 1}
         >
           Previous
         </button>
-        <span className='p-2'>Page {currentPage} of {totalPages}</span>
+        <span className='p-2'>Page {pagination.current_page} of {pagination.total_pages}</span>
         <button
           className="btn btn-primary ml-2"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          onClick={() => dispatch(fetchData(pagination.next_url))}
+          disabled={pagination.current_page === pagination.total_pages}
         >
           Next
         </button>

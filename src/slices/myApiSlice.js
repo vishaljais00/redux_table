@@ -1,15 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Define an async action using createAsyncThunk
-export const fetchData = createAsyncThunk('apiList/fetchData', async (animal='cats') => {
+export const fetchData = createAsyncThunk('apiList/fetchData', async (url='https://api.artic.edu/api/v1/artworks') => {
   try {
-    const response = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${animal}`);
+    const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (error) {
     throw error;
   }
 });
+
+
 
 const apiListSlice = createSlice({
   name: 'apiList',

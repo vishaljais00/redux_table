@@ -2,10 +2,15 @@
 $primary-color: #007bff;
 $border-color: #ccc;
 
+input, button , select {
+
+  height:40px;
+}
+
 .App {
   text-align: center;
   font-family: Arial, sans-serif;
- 
+  
 }
 
 header {
