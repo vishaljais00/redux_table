@@ -1,0 +1,61 @@
+// App.scss
+$primary-color: #007bff;
+$border-color: #ccc;
+
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+ 
+}
+
+header {
+  background-color: $primary-color;
+  color: white;
+  padding: 20px;
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  select {
+    padding: 5px;
+    border: 1px solid $primary-color;
+    background-color: white;
+    margin-right: 10px;
+  }
+
+  input.input {
+    padding: 5px;
+    border: 1px solid $primary-color;
+  }
+}
+
+// Additional custom styles for the select and input elements
+.select-container {
+  select, input.input {
+    font-size: 16px;
+  }
+}
+
+.spinner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  h1 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 12px;
+  }
+}
