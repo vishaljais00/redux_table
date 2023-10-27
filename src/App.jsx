@@ -36,7 +36,7 @@ function App() {
              
           <div className='form-group me-2 mt-2'>
                 <input name='searchName' value={searchTitle} className='form-input bg-light' type='text' 
-                placeholder='search by name' onChange={(e)=>setSearchTitle(e.target.value)}/>
+                placeholder='search by title or api ' onChange={(e)=>setSearchTitle(e.target.value)}/>
                 <span>
 
                 </span>
